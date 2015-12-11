@@ -1,0 +1,5 @@
+node_modules
+.credentials
+
+# Download this from google api dashboard:
+client_secret.json 

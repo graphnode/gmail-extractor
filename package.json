@@ -1,0 +1,20 @@
+{
+  "name": "gmail-extractor",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "base64url": "^1.0.5",
+    "google-auth-library": "^0.9.7",
+    "googleapis": "^2.1.6",
+    "moment": "^2.10.6",
+    "progress": "^1.1.8",
+    "q": "^1.4.1"
+  }
+}
