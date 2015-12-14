@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^1.5.0",
     "base64url": "^1.0.5",
     "google-auth-library": "^0.9.7",
     "googleapis": "^2.1.6",
     "moment": "^2.10.6",
-    "progress": "^1.1.8",
-    "q": "^1.4.1"
+    "shelljs": "^0.5.3"
   }
 }

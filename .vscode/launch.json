@@ -19,6 +19,12 @@
 			"externalConsole": false,
 			"sourceMaps": false,
 			"outDir": null
-		}
+		},
+        {
+            "name": "Attach",
+            "type": "node",
+            "request": "attach",
+            "port": 5858
+        }
 	]
 }

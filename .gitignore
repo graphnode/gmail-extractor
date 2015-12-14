@@ -1,5 +1,7 @@
 node_modules
 .credentials
-
+mbox
+*.mbox
+*.eml
 # Download this from google api dashboard:
 client_secret.json

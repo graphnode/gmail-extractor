@@ -1,8 +1,7 @@
-var q = require('q'),
-    fs = require('fs'),
+var fs = require('fs'),
     readline = require('readline');
 
-var googleAuth = require('google-auth-library');
+var GoogleAuth = require('google-auth-library');
 
 var SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
 var TOKEN_DIR = './.credentials/';
@@ -14,7 +13,7 @@ function authorize(credentials, callback) {
     var clientSecret = credentials.installed.client_secret;
     var clientId = credentials.installed.client_id;
     var redirectUrl = credentials.installed.redirect_uris[0];
-    var auth = new googleAuth();
+    var auth = new GoogleAuth();
     var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
     // Check if we have previously stored a token.
@@ -64,13 +63,11 @@ function storeToken(token) {
     console.log('Token stored to ' + TOKEN_PATH);
 }
 
-module.exports = function () {
-    var deferred = q.defer();
-    
+module.exports = function (callback) {
     // Load client secrets from a local file.
     fs.readFile(SECRET_PATH, 'utf8', function (err, content) {
         if (err) {
-            deferred.reject('Error loading client secret file: ' + err);
+            callback('Error loading client secret file: ' + err, null);
             return;
         }
 
@@ -78,13 +75,11 @@ module.exports = function () {
         // Gmail API.
         authorize(JSON.parse(content), function(err, authClient) {
             if (err) {
-                deferred.reject('Error getting auth client: ' + err);
+                callback('Error getting auth client: ' + err, null);
                 return;
             }
 
-            deferred.resolve(authClient);
+            callback(null, authClient);
         });
     });
-    
-    return deferred.promise;
 };
