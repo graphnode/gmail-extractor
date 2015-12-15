@@ -15,6 +15,8 @@
     "google-auth-library": "^0.9.7",
     "googleapis": "^2.1.6",
     "moment": "^2.10.6",
+    "open": "0.0.5",
+    "progress": "^1.1.8",
     "shelljs": "^0.5.3"
   }
 }
