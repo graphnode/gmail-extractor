@@ -6,7 +6,7 @@ var GoogleAuth = require('google-auth-library');
 
 var SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
 var TOKEN_DIR = './.credentials/';
-var TOKEN_PATH = TOKEN_DIR + 'gmail-nodejs-quickstart.json';
+var TOKEN_PATH = TOKEN_DIR + 'gmail-token.json';
 
 var SECRET_PATH = './client_secret.json';
 
@@ -35,21 +35,25 @@ function getNewToken(oauth2Client, callback) {
     });
     
     console.log('Opening browser to get authorization...');
-    open(authUrl);
-    
-    var rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-    rl.question('Enter the code from that page here: ', function (code) {
-        rl.close();
-        oauth2Client.getToken(code, function (err, token) {
-            if (err)
-                throw 'Error while trying to retrieve access token ' + err;
-                
-            oauth2Client.credentials = token;
-            storeToken(token);
-            callback(undefined, oauth2Client);
+    open(authUrl, 'asd', function(err) {
+        if (err) {
+            console.log('Failed to open browser. Please go to ' + authUrl);
+        }
+        
+        var rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
+        rl.question('Enter the code from that page here: ', function (code) {
+            rl.close();
+            oauth2Client.getToken(code, function (err, token) {
+                if (err)
+                    throw 'Error while trying to retrieve access token ' + err;
+                    
+                oauth2Client.credentials = token;
+                storeToken(token);
+                callback(undefined, oauth2Client);
+            });
         });
     });
 }
