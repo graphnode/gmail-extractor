@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "async": "^1.5.0",
-    "base64url": "^1.0.5",
+    "base64url": "^3.0.1",
     "google-auth-library": "^0.9.7",
     "googleapis": "^2.1.6",
     "moment": "^2.10.6",
